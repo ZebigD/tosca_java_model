@@ -61,7 +61,7 @@ hello: again
 	@Test
 	public void test_invalid_level0_keywords() {
 		def p = new ToscaParser() 
-		def invalid_tosca = new File('test/resources/junit/invalid_level0_keywords.yml').text
+		def invalid_tosca = new File('src/test/resources/junit/invalid_level0_keywords.yml').text
 		assert p.checkSource(invalid_tosca) == false
 		assert Logger.gotError("'topology_templates' is not a valid keyword for a service template")
 	}
@@ -69,7 +69,7 @@ hello: again
 	@Test
 	public void test_valid_level0_keywords() {
 		def p = new ToscaParser()
-		def valid_tosca = new File('test/resources/junit/valid_level0_keywords.yml').text
+		def valid_tosca = new File('src/test/resources/junit/valid_level0_keywords.yml').text
 		Logger.print_error = true
 		assert p.checkSource(valid_tosca)
 	}
@@ -77,14 +77,14 @@ hello: again
 	@Test
 	public void test_hello_world_tosca() {
 		def p = new ToscaParser()
-		def valid_tosca = new File('test/resources/junit/hello_world_tosca.yml').text
+		def valid_tosca = new File('src/test/resources/junit/hello_world_tosca.yml').text
 		assert p.checkSource(valid_tosca)
 	}
 
 	@Test
 	public void test_invalid_topology_template_keywords() {
 		def p = new ToscaParser()
-		def invalid_tosca = new File('test/resources/junit/invalid_topology_template_keywords.yml').text
+		def invalid_tosca = new File('src/test/resources/junit/invalid_topology_template_keywords.yml').text
 		assert p.checkSource(invalid_tosca) == false
 		assert Logger.gotError("'node_template' is not a valid keyword in topology_template block")
 	}
@@ -92,7 +92,7 @@ hello: again
 	@Test
 	public void test_invalid_node_templates_keywords() {
 		def p = new ToscaParser()
-		def invalid_tosca = new File('test/resources/junit/invalid_node_templates_keywords.yml').text
+		def invalid_tosca = new File('src/test/resources/junit/invalid_node_templates_keywords.yml').text
 		assert p.checkSource(invalid_tosca) == false
 		assert Logger.gotError("'capability' is not a valid keyword")
 	}
@@ -100,8 +100,8 @@ hello: again
 	@Test
 	public void test_invalid_properties_keywords() {
 		def p = new ToscaParser()
-		def invalid_tosca = new File('test/resources/junit/invalid_properties_keywords.yml').text
-		assert p.checkSource(invalid_tosca) == false
+		def invalid_tosca = new File('src/test/resources/junit/invalid_properties_keywords.yml').text
+		assert p.checkSource(invalid_tosca) == false // FIXME
 		assert Logger.gotError("'capability' is not a valid keyword")
 	}
 
