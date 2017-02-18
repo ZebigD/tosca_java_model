@@ -5,14 +5,12 @@ class Artifact extends ToscaObject {
 	Artifact(String name, model) {
 		super('artifact', name, model)
 		ToscaModel.checkRequired(model, ['file'])
-		instances[name] = this
 	}
 
 	Artifact(String name, String file_uri) {
 		ToscaModel.checkRequired(model, ['type', 'file'])
 		this.name = name
 		this.model = ["file":file_uri,"type":""]
-		instances[name] = this
 	}
 
 	String getFile() {
