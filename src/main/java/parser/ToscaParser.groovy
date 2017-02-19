@@ -12,7 +12,7 @@ import com.esotericsoftware.yamlbeans.YamlReader
 
 class ToscaParser {
 
-	boolean checkYaml(final String text) {
+	static boolean validate_yaml(final String text) {
 		// Check YAML
 		try {
 			new Yaml().load(text)
@@ -26,9 +26,9 @@ class ToscaParser {
 		return true
 	}
 
-	boolean checkSource(final String text) {
+	static boolean validate_tosca_yaml(final String text) {
 
-		if (!checkYaml(text)) {
+		if (!validate_yaml(text)) {
 			return false
 		}
 
