@@ -1,8 +1,9 @@
 # tosca_java_model
 
-This project is a Java implementation of OASIS TOSCA Metamodel... Actually a Groovy implementation :)
+Java implementation of OASIS TOSCA Metamodel... 
+- actually a Groovy implementation :)
 
-It is based on the TOSCA simple profile in version 1.1 (http://docs.oasis-open.org/tosca/TOSCA-Simple-Profile-YAML/v1.1/TOSCA-Simple-Profile-YAML-v1.1.html)
+It is based on the [a TOSCA simple profile](http://docs.oasis-open.org/tosca/TOSCA-Simple-Profile-YAML/v1.1/TOSCA-Simple-Profile-YAML-v1.1.html) in version 1.1 
 
 This a work in progress.
 
