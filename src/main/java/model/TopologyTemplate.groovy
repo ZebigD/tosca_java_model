@@ -4,7 +4,6 @@ class TopologyTemplate {
 	
 	Map model
 	
-	List<Parameter> inputs
 	List<NodeTemplate> node_templates
 	List<RelationshipTemplate> relationship_templates
 	List<Group> groups
