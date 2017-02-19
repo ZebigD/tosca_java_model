@@ -1,11 +1,13 @@
 package model
 
+import javax.swing.JTable.ModelChange;
+
 class ServiceTemplate {
 
 	String tosca_definitions_version
-	Map<String,String> metadata
-	String description
-	Map dsl_definitions
+	Map<String,String> metadata = [:]
+	String description = ''
+	Map dsl_definitions = [:]
 	List<Repository> repositories = []
 	List<Import> imports = []
 	List<ArtifactType> artifact_types = []
@@ -20,7 +22,7 @@ class ServiceTemplate {
 
 	ServiceTemplate(Map model) {
 		tosca_definitions_version = model.'tosca_definitions_version'
-		metadata = model.'metadata'
+		if (model.'metadata') metadata = model.'metadata'
 		description = model.'description'
 		dsl_definitions = model.'dsl_definitions'
 		model.'repositories'.each {	repo_name, repo_model -> repositories << new Repository(repo_name, repo_model) }

@@ -1,12 +1,19 @@
 package model
 
-class Policy {
+import java.util.Map;
+
+class Policy extends ToscaObject {
+		
+	Policy(String policy_name, model) {
+		super('policy', policy_name, model)
+	}
 	
-	String type
-	String description
-	Map<String,String> properties
-	List<String> targets
+	Map<String,String> getProperties() {
+		return ToscaModel.getProperties(model)
+	}
 	
-	// TODO
+	List<String> getTargets() {
+		return ToscaModel.getListOfString('targets', model)
+	}
 
 }

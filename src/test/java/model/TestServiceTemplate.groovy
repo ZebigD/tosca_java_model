@@ -39,6 +39,9 @@ class TestServiceTemplate {
 	@Test
 	public void testSimpleCompute() {
 		def model = ToscaBuilder.simple_compute()
-		def st = new ServiceTemplate(model)
+		ServiceTemplate st = new ServiceTemplate(model)
+		assert st.tosca_definitions_version == 'tosca_simple_yaml_1_0'
+		assert st.description == 'Template for deploying a single server with predefined properties.'
+		assert st.metadata == [:]
 	}
 }

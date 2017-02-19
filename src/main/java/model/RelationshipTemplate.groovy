@@ -1,14 +1,38 @@
 package model
 
-class RelationshipTemplate {
+import java.util.List
+import java.util.Map
+
+class RelationshipTemplate extends ToscaObject {
 	
-	String type
-	String description
-	Map<String,String> properties
-	Map<String,String> attributes
-	List<Interface> interfaces
-	String copy
+	RelationshipTemplate(String name, model) {
+		super('relationship_template', name, model)
+	}
 	
-	// TODO
+	Map<String, String> getPropertyAssignments() {
+		return ToscaModel.getPropertyAssignments(model)
+	}
+	
+	Map<String, String> getAttributeAssignments() {
+		return ToscaModel.getAttributeAssignments(model)
+	}
+	
+	List<Interface> getInterfaces() {
+		return ToscaModel.getInterfaces(model)
+	}
+	
+	String getCopy() {
+		return model.'copy'
+	}
+	
+	Map<String, String> getMetadata() {
+		def result = [:]
+		if (model.'metadata' != null) {
+			if (!(model.'metadata' instanceof Map)) {
+				throw new Exception("relationship template ${this.name} metadata should be a map")
+			}
+		}
+		return result
+	}
 
 }
