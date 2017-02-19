@@ -2,8 +2,8 @@ package model
 
 class TopologyTemplate {
 	
-	String type
-	String description
+	Map model
+	
 	List<Parameter> inputs
 	List<NodeTemplate> node_templates
 	List<RelationshipTemplate> relationship_templates
@@ -11,5 +11,21 @@ class TopologyTemplate {
 	List<Policy> policies
 	List<Parameter> outputs
 	Map substitution_mappings
+	
+	TopologyTemplate(Map model) {
+		this.model = model
+	}
+	
+	String getDescription() {
+		return model.'description'
+	}
+	
+	List<Parameter> getInputs() {
+		def result = []
+		model.'inputs'.each { String input_name, input_def ->
+			result << new Parameter(input_name, input_def)
+		}
+		return result
+	}
 
 }

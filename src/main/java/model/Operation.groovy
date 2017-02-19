@@ -5,7 +5,7 @@ class Operation {
 	String name
 	String description
 	String implementation
-	List<Input> inputs
+	List<Parameter> inputs
 	List<Artifact> artifacts
 
 }

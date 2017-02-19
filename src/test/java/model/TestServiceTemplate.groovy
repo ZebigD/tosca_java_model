@@ -6,11 +6,12 @@ import org.junit.Test
 import org.yaml.snakeyaml.Yaml
 
 import utils.Logger
+import builder.ToscaBuilder
 
 class TestServiceTemplate {
 
 	@Test
-	public void test_repositories_ok() {
+	public void testRepositories_ok() {
 		def valid_tosca = new File('src/test/resources/junit/st_repository.yml').text
 		def model = new Yaml().load(valid_tosca)
 		def st = new ServiceTemplate(model)
@@ -23,7 +24,7 @@ class TestServiceTemplate {
 	}
 
 	@Test
-	public void test_repositories_ko() {
+	public void testRepositories_ko() {
 		def valid_tosca = new File('src/test/resources/junit/st_repository_ko.yml').text
 		def model = new Yaml().load(valid_tosca)
 		try {
@@ -33,5 +34,11 @@ class TestServiceTemplate {
 		catch (Exception e) {
 			assert Logger.gotError("Keyname 'url' is missing")
 		}
+	}
+	
+	@Test
+	public void testSimpleCompute() {
+		def model = ToscaBuilder.simple_compute()
+		def st = new ServiceTemplate(model)
 	}
 }

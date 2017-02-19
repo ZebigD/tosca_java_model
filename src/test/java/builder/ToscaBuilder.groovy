@@ -1,20 +1,19 @@
 package builder
 
-import org.yaml.snakeyaml.Yaml
-
-import parser.ToscaParser
+import java.util.Map
 
 /**
  * Helper class to build tosca service templates as maps
- *  
+ *
  * @author zebig
  *
  */
-class ToscaTestBuilder extends NodeBuilder {
+
+class ToscaBuilder {
 
 	Map model
 
-	ToscaTestBuilder() {
+	ToscaBuilder() {
 		model = [:]
 	}
 
@@ -48,29 +47,24 @@ class ToscaTestBuilder extends NodeBuilder {
 			cap."properties"."$k" = v
 		}
 	}
-	
-	static Map simple_host() {
+
+	static Map default_host() {
 		return [num_cpus:1, disk_size:'10 GB', mem_size:'4096 MB']
 	}
 
-	static Map simple_os() {
+	static Map default_os() {
 		return [architecture:'x86_64', type:'linux', distribution:'rhel', version:'7.2']
 	}
 
 	static Map simple_compute() {
-		def b = new ToscaTestBuilder()
+		def b = new ToscaBuilder()
 		b.service_template(
 				tosca_definitions_version: 'tosca_simple_yaml_1_0',
 				description: 'Template for deploying a single server with predefined properties.')
 		b.compute("my_server")
-		b.capability("my_server", "host", simple_host())
-		b.capability("my_server", "os", simple_os())
+		b.capability("my_server", "host", default_host())
+		b.capability("my_server", "os", default_os())
 		return b.model
 	}
+
 }
-
-def model = ToscaTestBuilder.simple_compute()
-def src = new Yaml().dump(model)
-
-assert ToscaParser.validate_tosca_yaml(src);
-assert ToscaParser.validate_service_template(model);
